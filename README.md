@@ -6,20 +6,20 @@ Este mismo esta orientado a a una práctica real de ingeniería de datos: constr
 
 ## 🚀 Instrucciones de ejecución
 
-### PASO 1 — Ubicarse en el proyecto
+### 1 — Ubicarse en el proyecto
 Abrir la terminal y situarse en la carpeta principal del repositorio:
  cd MARKETING
 
-### PASO 2 - Crear y activar el entorno virtual
+### 2 - Crear y activar el entorno virtual
 python3 -m venv .venv
 source .venv/bin/activate       # Windows: .venv\Scripts\activate
 
 
-### PASO 3 — Instalar dependencias necesarias
+### 3 — Instalar dependencias necesarias
 pip install pandas
 
 
-### PASO 4 — Ejecutar el ETL para construir el Data Warehouse
+### 4 — Ejecutar el ETL para construir el Data Warehouse
 python3 build_dw.py
 
 
