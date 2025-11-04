@@ -1,6 +1,14 @@
 # Trabajo Práctico Final — Introducción al Marketing Online y los Negocios Digitales
+# 🛍️ E-Commerce Data Warehouse & Analytics
 
-Repositorio del trabajo práctico final de la materia.
+Este es un trabajo de la materia 'Intro. al Marketing Online y los Negocios Digitales' del 2º año de la lic. en Ciencia de Datos. 
+Este mismo esta orientado a a una práctica real de ingeniería de datos: construcción de un data warehouse en un modelo estrella, procesamiento ETL y preparación de datasets para análisis y dashboarding.
 
-**Consigna y documento principal:** [Trabajo Práctico Final](https://docs.google.com/document/d/15RNP3FVqLjO4jzh80AAkK6mUR5DOLqPxLjQxqvdzrYg/edit?usp=sharing)
-**Diagrama Entidad Relación:** [DER](./assets/DER.png)
+**Incluye:**
+
+- Modelo Estrella (Star Schema)
+- ETL en Python + Pandas
+- Dimensiones + Tabla de Hechos
+- Limpieza y transformación de datos
+- Dataset final para dashboard BI
+
