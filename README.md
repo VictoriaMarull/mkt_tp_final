@@ -64,12 +64,6 @@ python3 build_dw.py
 - **weekday**: 1–7 (1=Lunes … 7=Domingo) *o* 0–6 según implementación; mantener consistente con el ETL.
 
 ### 4) Supuestos
-- **Grano de la fact**: COMPLETAR
-- **Producto + categoría** se consolidan en **DimProduct** (con `parent_category_name` y `category_level`).
-- **Provincia** se integra en **DimAddress** (no hay DimProvince separada).
-- **DimDate** se genera a partir de las fechas presentes en `sales_order` (no calendario completo).
-- **Integridad referencial**: se asume válida en los datos fuente.
-- **Valores faltantes**: nulos o defaults razonables (p.ej., `discount_amount=0`; `parent_category_name=''`).
-- **net_amount** se valida o calcula como `quantity*unit_price - discount_amount` cuando no está en el origen.
+
 
 
