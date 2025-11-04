@@ -4,6 +4,27 @@
 Este es un trabajo de la materia 'Intro. al Marketing Online y los Negocios Digitales' del 2º año de la lic. en Ciencia de Datos. 
 Este mismo esta orientado a a una práctica real de ingeniería de datos: construcción de un data warehouse en un modelo estrella, procesamiento ETL y preparación de datasets para análisis y dashboarding.
 
+## 🚀 Instrucciones de ejecución
+
+### PASO 1 — Ubicarse en el proyecto
+Abrir la terminal y situarse en la carpeta principal del repositorio:
+
+cd MARKETING
+---
+
+### PASO 2 - Crear y activar el entorno virtual
+python3 -m venv .venv
+source .venv/bin/activate       # Windows: .venv\Scripts\activate
+
+
+### PASO 3 — Instalar dependencias necesarias
+pip install pandas
+
+
+### PASO 4 — Ejecutar el ETL para construir el Data Warehouse
+python3 build_dw.py
+
+
 ## Documentación: Diccionario de datos, claves, dominios y supuestos
 
 ### 1) Diccionario de datos (resumen)
