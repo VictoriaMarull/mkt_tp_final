@@ -8,8 +8,7 @@ Este mismo esta orientado a a una práctica real de ingeniería de datos: constr
 
 ### PASO 1 — Ubicarse en el proyecto
 Abrir la terminal y situarse en la carpeta principal del repositorio:
-
-cd MARKETING
+ cd MARKETING
 ---
 
 ### PASO 2 - Crear y activar el entorno virtual
