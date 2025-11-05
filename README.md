@@ -4,6 +4,22 @@
 Este es un trabajo de la materia 'Intro. al Marketing Online y los Negocios Digitales' del 2º año de la lic. en Ciencia de Datos. 
 Este mismo esta orientado a a una práctica real de ingeniería de datos: construcción de un data warehouse en un modelo estrella, procesamiento ETL y preparación de datasets para análisis y dashboarding.
 
+
+## 🛠️ Buenas prácticas aplicadas
+
+En este proyecto se aplicaron buenas prácticas básicas de ingeniería de datos:
+
+- Uso de entorno virtual (`.venv`) para aislar dependencias
+- Instalación de dependencias mediante `pip` (`pandas`)
+- Script ETL ejecutable desde terminal (`python3 build_dw.py`)
+- Organización del proyecto en carpetas:
+  - `raw/` → datos fuente
+  - `warehouse/` → tablas generadas del DW
+- Construcción de un **modelo estrella** con **dimensiones conformadas**
+- Código en Python modular y documentado para reproducibilidad
+- Lectura/escritura estructurada de datos (csv → warehouse)
+
+
 ## 🚀 Instrucciones de ejecución
 
 ### 1. Ubicarse en el proyecto
@@ -21,6 +37,8 @@ pip install pandas
 
 ### 4. Ejecutar el ETL para construir el Data Warehouse
 python3 build_dw.py
+
+
 
 ## ⭐ Modelos Estrella del Data Warehouse
 
