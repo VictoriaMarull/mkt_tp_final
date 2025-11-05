@@ -104,7 +104,6 @@ date_id *(PK)*, full_date, year, quarter, month, month_name, day, weekday
 - DimAddress: address_id  
 - DimDate: date_id  
 
-> Las tablas de hechos usan **claves naturales del OLTP** y definen su unicidad por **grano**, no por PK artificial.
 
 #### Grano de las tablas de hechos
 - FactOrderItem → **1 fila por producto por orden**
