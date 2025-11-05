@@ -1,4 +1,4 @@
-# Trabajo Práctico Final — Introducción al Marketing Online y los Negocios Digitales
+# Trabajo Práctico Final  "Introducción al Marketing Online y los Negocios Digitales"
 # E-Commerce Data Warehouse & Analytics
 
 Este es un trabajo de la materia 'Intro. al Marketing Online y los Negocios Digitales' del 2º año de la lic. en Ciencia de Datos. 
@@ -6,40 +6,40 @@ Este mismo esta orientado a a una práctica real de ingeniería de datos: constr
 
 ## 🚀 Instrucciones de ejecución
 
-### 1 — Ubicarse en el proyecto
+### 1. Ubicarse en el proyecto
 Abrir la terminal y situarse en la carpeta principal del repositorio:
  cd MARKETING
 
-### 2 - Crear y activar el entorno virtual
+### 2. Crear y activar el entorno virtual
 python3 -m venv .venv
 source .venv/bin/activate       # Windows: .venv\Scripts\activate
 
 
-### 3 — Instalar dependencias necesarias
+### 3. Instalar dependencias necesarias
 pip install pandas
 
 
-### 4 — Ejecutar el ETL para construir el Data Warehouse
+### 4. Ejecutar el ETL para construir el Data Warehouse
 python3 build_dw.py
 
 ## ⭐ Modelos Estrella del Data Warehouse
 
-### FactOrderItem — Ventas por producto
+### FactOrderItem
 - **Grano:** Una fila representa una unidad de producto vendida dentro de una transacción comercial, adquirida por un cliente específico en un momento determinado, detallando la cantidad, precio aplicado y descuentos correspondientes, y asociada a un canal y punto de venta. 
 - **Medidas:** quantity, unit_price, discount_amount, net_amount *(importe neto por ítem)*
 - **Dimensiones:** Customer, Product, Channel, Store, Address, Date  
 
-### FactSalesOrder — Órdenes completas
+### FactSalesOrder 
 - **Grano:** Una fila representa una compra completa realizada por un cliente, incluyendo el monto total pagado, impuestos, envío y canal de venta, registrada en una fecha específica.
 - **Medidas:** subtotal, tax_amount, shipping_fee, total_amount *(monto final de la orden)*
 - **Dimensiones:** Customer, Channel, Store, Address, Date  
 
-### FactNpsResponse — Experiencia del cliente
+### FactNpsResponse 
 - **Grano:** Una fila representa una respuesta de NPS enviada por un cliente, con su puntuación y comentario, registrada en una fecha y canal específicos.
 - **Medidas:** score *(valor de satisfacción de 0 a 10)*
 - **Dimensiones:** Customer, Channel, Date  
 
-### FactWebSession — Navegación digital
+### FactWebSession 
 - **Grano:** Una fila representa una interacción digital completa de un cliente con la plataforma, iniciada en un momento específico, que registra el canal de origen, el dispositivo utilizado y la duración total de la sesión.
 - **Medidas:** duration_seconds *(tiempo total de sesión en segundos)*
 - **Dimensiones:** Customer, Date  
@@ -170,7 +170,6 @@ date_id *(PK)*, full_date, year, quarter, month, month_name, day, weekday
 
 
 
-##  💭Consultas SQL Clave para Análisis
 
 ## 🧠 Consultas SQL Clave para Análisis
 
