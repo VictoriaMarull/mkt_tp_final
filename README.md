@@ -5,40 +5,6 @@ Este es un trabajo de la materia 'Intro. al Marketing Online y los Negocios Digi
 Este mismo esta orientado a a una práctica real de ingeniería de datos: construcción de un data warehouse en un modelo estrella, procesamiento ETL y preparación de datasets para análisis y dashboarding.
 
 
-## 🛠️ Buenas prácticas aplicadas
-
-En este proyecto se aplicaron buenas prácticas básicas de ingeniería de datos:
-
-- Uso de entorno virtual (`.venv`) para aislar dependencias
-- Instalación de dependencias mediante `pip` (`pandas`)
-- Script ETL ejecutable desde terminal (`python3 build_dw.py`)
-- Organización del proyecto en carpetas:
-  - `raw/` → datos fuente
-  - `warehouse/` → tablas generadas del DW
-- Construcción de un **modelo estrella** con **dimensiones conformadas**
-- Código en Python modular y documentado para reproducibilidad
-- Lectura/escritura estructurada de datos (csv → warehouse)
-
-
-## 🚀 Instrucciones de ejecución
-
-### 1. Ubicarse en el proyecto
-Abrir la terminal y situarse en la carpeta principal del repositorio:
- cd MARKETING
-
-### 2. Crear y activar el entorno virtual
-python3 -m venv .venv
-source .venv/bin/activate       # Windows: .venv\Scripts\activate
-
-
-### 3. Instalar dependencias necesarias
-pip install pandas
-
-
-### 4. Ejecutar el ETL para construir el Data Warehouse
-python3 build_dw.py
-
-
 
 ## ⭐ Modelos Estrella del Data Warehouse
 
@@ -313,3 +279,35 @@ ORDER BY sesiones DESC;
 ```
 
 
+## 🛠️ Buenas prácticas aplicadas
+
+En este proyecto se aplicaron buenas prácticas básicas de ingeniería de datos:
+
+- Uso de entorno virtual (`.venv`) para aislar dependencias
+- Instalación de dependencias mediante `pip` (`pandas`)
+- Script ETL ejecutable desde terminal (`python3 build_dw.py`)
+- Organización del proyecto en carpetas:
+  - `raw/` → datos fuente
+  - `warehouse/` → tablas generadas del DW
+- Construcción de un **modelo estrella** con **dimensiones conformadas**
+- Código en Python modular y documentado para reproducibilidad
+- Lectura/escritura estructurada de datos (csv → warehouse)
+
+
+## 🚀 Instrucciones de ejecución
+
+### 1. Ubicarse en el proyecto
+Abrir la terminal y situarse en la carpeta principal del repositorio:
+ cd MARKETING
+
+### 2. Crear y activar el entorno virtual
+python3 -m venv .venv
+source .venv/bin/activate       # Windows: .venv\Scripts\activate
+
+
+### 3. Instalar dependencias necesarias
+pip install pandas
+
+
+### 4. Ejecutar el ETL para construir el Data Warehouse
+python3 build_dw.py
