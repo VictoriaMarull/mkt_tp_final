@@ -46,23 +46,51 @@ python3 build_dw.py
 
 
 
-## Documentación: Diccionario de datos, claves, dominios y supuestos
+## 📚 Documentación: Diccionario de datos, claves, dominios y supuestos
 
-### 1) Diccionario de datos (resumen)
+### 1) Diccionario de datos 
 
 #### Tablas de hechos
-- **FactOrderItem:** date_id, customer_id, product_id, channel_id, store_id, billing_address_id, shipping_address_id, order_number, quantity, unit_price, discount_amount, net_amount.
-- **FactSalesOrder:** date_id, customer_id, channel_id, store_id, billing_address_id, shipping_address_id, order_number, status, currency_code, subtotal, tax_amount, shipping_fee, total_amount.
-- **FactNpsResponse:** date_id, customer_id, channel_id, nps_id, score, comment.
-- **FactWebSession:** date_id, customer_id, session_id, source, device, duration_seconds.
+
+**FactOrderItem**  
+Campos:  
+date_id, customer_id, product_id, channel_id, store_id, billing_address_id, shipping_address_id,  
+order_number, quantity, unit_price, discount_amount, net_amount  
+
+**FactSalesOrder**  
+Campos:  
+date_id, customer_id, channel_id, store_id, billing_address_id, shipping_address_id,  
+order_number, status, currency_code, subtotal, tax_amount, shipping_fee, total_amount  
+
+**FactNpsResponse**  
+Campos:  
+date_id, customer_id, channel_id, nps_id, score, comment  
+
+**FactWebSession**  
+Campos:  
+date_id, customer_id, session_id, source, device, duration_seconds  
+
+---
 
 #### Tablas dimensión
-- **DimCustomer:** customer_id, first_name, last_name, email, status, created_at.
-- **DimProduct:** product_id, sku, product_name, category_name, parent_category_name, category_level, status, created_at.
-- **DimStore:** store_id, store_name.
-- **DimChannel:** channel_id, channel_name.
-- **DimAddress:** address_id, line1, line2, city, postal_code, country_code, province_id, province_name, created_at.
-- **DimDate:** date_id, full_date, year, quarter, month, month_name, day, weekday.
+
+**DimCustomer**  
+customer_id *(PK)*, first_name, last_name, email, status, created_at  
+
+**DimProduct**  
+product_id *(PK)*, sku, product_name, category_name, parent_category_name, category_level, status, created_at  
+
+**DimStore**  
+store_id *(PK)*, store_name  
+
+**DimChannel**  
+channel_id *(PK)*, channel_name  
+
+**DimAddress**  
+address_id *(PK)*, line1, line2, city, postal_code, country_code, province_id, province_name, created_at  
+
+**DimDate**  
+date_id *(PK)*, full_date, year, quarter, month, month_name, day, weekday  
 
 ---
 
@@ -76,7 +104,7 @@ python3 build_dw.py
 - DimAddress: address_id  
 - DimDate: date_id  
 
-> Las tablas hechos usan **claves naturales del OLTP** y definen su unicidad por grano, no por PK artificial.
+> Las tablas de hechos usan **claves naturales del OLTP** y definen su unicidad por **grano**, no por PK artificial.
 
 #### Grano de las tablas de hechos
 - FactOrderItem → **1 fila por producto por orden**
@@ -116,30 +144,156 @@ python3 build_dw.py
 
 ### 3) Dominios (tipos/valores esperados)
 
-- **IDs:** claves naturales del sistema transaccional.
-- **date_id**: `YYYYMMDD` (8 dígitos)
-- **Fechas:** `YYYY-MM-DD`
-- **Textos:** `varchar`
-- **Decimal / importes:** >= 0, dos decimales
-- **quantity:** entero >= 0
-- **score (NPS):** 0 a 10
-- **duration_seconds:** entero >= 0
-- **status** (cliente/producto): {`active`, `inactive`}
-- **canales** (ejemplos reales): {`online`, `store`, `app`, `ads`, `email`, `social`, `direct`}
+- **IDs:** claves naturales del sistema transaccional  
+- **date_id**: `YYYYMMDD` (8 dígitos)  
+- **Fechas:** `YYYY-MM-DD`  
+- **Textos:** `varchar`  
+- **Decimal / importes:** ≥ 0, dos decimales  
+- **quantity:** entero ≥ 0  
+- **score (NPS):** 0 a 10  
+- **duration_seconds:** entero ≥ 0  
+- **status** (cliente/producto): {`active`, `inactive`}  
+- **canales** (ejemplos): {`online`, `store`, `app`, `ads`, `email`, `social`, `direct`}  
 
-> Notas: `weekday` puede ser 0–6 o 1–7 según implementación; mantener consistente.
+> Nota: `weekday` puede ser 0–6 o 1–7 según implementación; mantener consistente con el ETL.
 
 ---
 
 ### 4) Supuestos
 
-- Se usan **claves naturales**, no surrogate keys.
-- Dimensiones son **conformadas** y compartidas entre todas las facts.
-- `date_id` se deriva para normalizar fechas y facilitar joins.
-- Duración web calculada como `ended_at - started_at`.
-- Envío y facturación se modelan como dos FK separadas a DimAddress.
-- Los datos son simulados pero representan un entorno de e-commerce realista.
+- Se usan **claves naturales**, no surrogate keys.  
+- Dimensiones **conformadas** compartidas entre todas las facts.  
+- `date_id` se deriva para normalizar fechas y facilitar joins.  
+- Duración web calculada como `ended_at - started_at`.  
+- Envío y facturación se modelan como dos FK separadas a DimAddress.  
+- Datos sintéticos pero representativos de e-commerce real.
 
 
+
+##  💭Consultas SQL Clave para Análisis
+
+## 🧠 Consultas SQL Clave para Análisis
+
+### 1) Revenue diario
+```sql
+SELECT 
+    d.full_date AS fecha,
+    SUM(f.total_amount) AS revenue
+FROM FactSalesOrder f
+JOIN DimDate d ON d.date_id = f.date_id
+GROUP BY d.full_date
+ORDER BY d.full_date;
+```
+
+### 2) Ticket promedio (AOV)
+```sql
+SELECT 
+    AVG(total_amount) AS average_order_value
+FROM FactSalesOrder;
+```
+
+### 3) Revenue por canal
+```sql
+SELECT
+    c.channel_name,
+    SUM(f.total_amount) AS revenue
+FROM FactSalesOrder f
+JOIN DimChannel c ON c.channel_id = f.channel_id
+GROUP BY c.channel_name
+ORDER BY revenue DESC;
+```
+
+### 4) Top 10 productos más vendidos
+```sql
+SELECT
+    p.product_name,
+    SUM(i.quantity) AS unidades_vendidas
+FROM FactOrderItem i
+JOIN DimProduct p ON p.product_id = i.product_id
+GROUP BY p.product_name
+ORDER BY unidades_vendidas DESC
+LIMIT 10;
+```
+
+### 5) Margen neto por día
+```sql
+SELECT
+    d.full_date,
+    SUM(i.net_amount) AS net_revenue
+FROM FactOrderItem i
+JOIN DimDate d ON d.date_id = i.date_id
+GROUP BY d.full_date
+ORDER BY d.full_date;
+```
+
+### 6) NPS global
+```sql
+WITH base AS (
+    SELECT score FROM FactNpsResponse
+),
+stats AS (
+    SELECT
+        COUNT(*) AS total,
+        SUM(CASE WHEN score >= 9 THEN 1 END) AS promotores,
+        SUM(CASE WHEN score <= 6 THEN 1 END) AS detractores
+    FROM base
+)
+SELECT
+    ROUND(100.0 * promotores/total - 100.0 * detractores/total, 2) AS nps;
+```
+
+### 7) Sesiones por dispositivo y duración media
+```sql
+SELECT
+    device,
+    COUNT(*) AS sesiones,
+    ROUND(AVG(duration_seconds), 2) AS avg_duration_seconds
+FROM FactWebSession
+GROUP BY device
+ORDER BY sesiones DESC;
+```
+
+### 8) Clientes nuevos por mes
+```sql
+WITH first_order AS (
+    SELECT customer_id, MIN(date_id) AS first_date
+    FROM FactSalesOrder
+    GROUP BY customer_id
+)
+SELECT
+    SUBSTRING(first_date, 1, 6) AS periodo_yyyy_mm,
+    COUNT(*) AS clientes_nuevos
+FROM first_order
+GROUP BY SUBSTRING(first_date, 1, 6)
+ORDER BY periodo_yyyy_mm;
+```
+
+### 9) Recompra
+```sql
+WITH dates AS (
+    SELECT DISTINCT customer_id, date_id
+    FROM FactSalesOrder
+)
+SELECT
+    COUNT(*) AS clientes_recompra
+FROM (
+    SELECT customer_id, COUNT(*) AS dias_con_compra
+    FROM dates
+    GROUP BY customer_id
+) t
+WHERE dias_con_compra > 1;
+```
+
+### 10) Engagement digital
+```sql
+SELECT
+    source,
+    device,
+    COUNT(*) AS sesiones,
+    AVG(duration_seconds) AS avg_duration
+FROM FactWebSession
+GROUP BY source, device
+ORDER BY sesiones DESC;
+```
 
 
