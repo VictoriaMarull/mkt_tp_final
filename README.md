@@ -62,7 +62,7 @@ Sobre esta estructura se aplicó un proceso **ETL (Extract, Transform, Load)** d
 - Generar **múltiples esquemas estrella (star schemas)** orientados a análisis específicos dentro del Data Warehouse (ventas, envíos, pagos, satisfacción del cliente, etc.).
 
 <p align="center">
-  <img src="DER.png" alt="Modelo OLTP original" width="850"/>
+  <img src="2DER.png" alt="Modelo OLTP original" width="850"/>
 </p>
 
 ---
