@@ -173,7 +173,7 @@ En este proyecto se aplicaron buenas prácticas básicas de ingeniería de datos
 - Lectura/escritura estructurada de datos (csv → warehouse)
 ---
 
-## 📊 Dashboard Interactivo
+## 📊 Dashboard interactivo
 
 Ya se encuentra disponible el **dashboard en Power BI**, que integra todas las **tablas de hechos del Data Warehouse** y permite visualizar las **métricas clave y KPIs** de los distintos modelos estrella.
 
@@ -183,4 +183,4 @@ Ya se encuentra disponible el **dashboard en Power BI**, que integra todas las *
 
 > 💡 Este dashboard ofrece una **visión 360° del negocio**, unificando información operativa, comercial y de experiencia del cliente.
 
---- 
+---
